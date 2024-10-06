@@ -1,4 +1,6 @@
 # python-easyADB
+![Banner](https://github.com/omidshm/PyAutoADB/blob/main/logo.png?raw=true)
+
 an sdk for interacting with android debug bridge and automate boring stuff
 
 
