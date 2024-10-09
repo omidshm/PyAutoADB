@@ -1,9 +1,14 @@
-class ADBManager:
+import subprocess
+import logging
+
+class ADBDevice:
     def __init__(
         self,
-        adb_port: int = None,
+        port: int = None,
+        host: str = None,
     ):
-        self.adb_port = adb_port
+        self.adb_port = port
+        self.adb_host = host
         self.window_root = ""
         # Connect to instance
         self.adb_connect()
@@ -45,7 +50,7 @@ class ADBManager:
             - Detect automatically what port should use now
         """
         if self.adb_port:
-            # TODO: make it smarter to save اشغال و درحال کار ports into the Environment variables
+            # TODO: make it smarter to save working and busy ports into the Environment variables
             # TODO: detect automatically what port should use now
             """adb_instances = port_finder()
 

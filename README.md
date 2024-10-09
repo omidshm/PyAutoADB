@@ -2,7 +2,7 @@
 ![Banner](https://github.com/omidshm/PyAutoADB/blob/main/logo.png?raw=true)
 
 an sdk for interacting with android debug bridge and automate boring stuff
-
+this is part of m Commercial program that now is Free and Open Source
 
 
 
@@ -15,13 +15,18 @@ pip install easyadb
 
 ## Usage
 ```python
-import easyadb
+import pyautoadb
 
-adb_handler = easyadb.ADBDevice("", "port")
+adb_handler = pyautoadb.ADBDevice("", "port")
 
 
 
 ```
+
+## Todo
+- [ ] add async support
+- [ ] add kernel low level apis
+
 
 ## Contributing
 
