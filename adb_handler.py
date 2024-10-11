@@ -1,11 +1,12 @@
-import subprocess
 import logging
+import subprocess
+
 
 class ADBDevice:
     def __init__(
         self,
-        port: int = None,
-        host: str = None,
+        port: int,
+        host: str = "localhost",
     ):
         self.adb_port = port
         self.adb_host = host
@@ -207,6 +208,7 @@ class ADBDevice:
         return lines
 
     def sync_efon_voices(self):
+
         adb_path = "/sdcard/Android/data/io.efon/files/Download/"
         local_path = "efon_records/"
 
