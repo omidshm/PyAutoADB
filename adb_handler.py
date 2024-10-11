@@ -1,5 +1,6 @@
 import logging
 import subprocess
+import time
 
 
 class ADBDevice:
@@ -207,19 +208,6 @@ class ADBDevice:
 
         return lines
 
-    def sync_efon_voices(self):
-
-        adb_path = "/sdcard/Android/data/io.efon/files/Download/"
-        local_path = "efon_records/"
-
-        local_files_list = utils.list_filenames(local_path)
-        adb_files_list = self.get_list_files(adb_path)
-
-        files_to_sync = utils.get_unique_values(adb_files_list, local_files_list)
-
-        for file in files_to_sync:
-            self.pull_file(f"{adb_path}{file}", f"{local_path}{file}")
-
     def fast_clear_selected_input(self, input_name_xpath: str) -> bool:
         # input_name: xpath
         input_text = self.get_xpath_text(input_name_xpath)
@@ -412,7 +400,7 @@ class ADBDevice:
             if pattern.match(element.tag):
                 print(element.text)
 
-    def install_app(self, apk_path: str) -> bool:
+    def install_app(self, apk_path: str, package_name: str = "org.telegram.messenger.web") -> bool:
 
         command = self.set_command(f"adb install -g -r {apk_path}")
         logging.info(f"Try to install {apk_path}")
@@ -427,7 +415,6 @@ class ADBDevice:
                 utils.send_tg_msg(f"install Exception: {e}")
 
             time.sleep(0.5)
-            package_name = "org.telegram.messenger.web"
             command = self.set_command(f"adb shell pm list packages")
             result = subprocess.check_output(command, text=True)
 
