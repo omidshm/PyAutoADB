@@ -1,6 +1,7 @@
 import logging
 import subprocess
 import time
+from xml.etree import ElementTree
 
 
 class ADBDevice:
@@ -12,6 +13,7 @@ class ADBDevice:
         self.adb_port = port
         self.adb_host = host
         self.window_root = ""
+        self.last_formatted_result = None
         # Connect to instance
         self.adb_connect()
 
@@ -45,7 +47,7 @@ class ADBDevice:
             bool: True if the connection was successful, False otherwise.
 
         Raises:
-            utils.raise_err: If the connection to the ADB instance fails.
+            Exception: If the connection to the ADB instance fails.
 
         TODO:
             - Make it smarter to save active and running ports into the Environment variables
@@ -76,7 +78,7 @@ class ADBDevice:
                 logging.info(f"adb connected to {adb_addr} successfully")
                 return True
             else:
-                utils.raise_err("ADB cannot connect to Emulator. check the port")
+                raise Exception("ADB cannot connect to Emulator. check the port")
 
     def bnds_to_tuple(self, bnd_str: str):
         bnd_str = bnd_str.replace("][", ",").replace("[", "").replace("]", "")
@@ -129,9 +131,9 @@ class ADBDevice:
             try:
                 command = self.set_command(f"adb shell uiautomator dump /sdcard/window_dump.xml")
                 result = subprocess.run(command, capture_output=True)
-                setting.formated_result = result.stdout.decode("utf-8")
-                # print(setting.formated_result)
-                logging.debug(setting.formated_result)
+                self.last_formatted_result = result.stdout.decode("utf-8")
+
+                logging.debug(self.last_formatted_result)
                 adb_identifier = self.adb_port
 
                 command = self.set_command(
@@ -412,7 +414,7 @@ class ADBDevice:
                 if "Success" in result:
                     return True
             except Exception as e:
-                utils.send_tg_msg(f"install Exception: {e}")
+                raise Exception(f"install Exception: {e}")
 
             time.sleep(0.5)
             command = self.set_command(f"adb shell pm list packages")
@@ -421,7 +423,7 @@ class ADBDevice:
             if package_name in result:
                 return True
 
-        utils.send_tg_msg(f"error on install : {result}")
+        raise Exception(f"error on install : {result}")
         return False
 
     def uninstall_app(self, package_name: str) -> bool:
