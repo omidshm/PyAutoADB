@@ -24,12 +24,15 @@ pip install pyautoadb
 ```python
 import pyautoadb
 
-adb_handler = pyautoadb.ADBDevice("", "port")
+adb_handler = pyautoadb.ADBDevice("localhost", "55557")
 
+img_path = adb_handler.take_screenshot()
+
+print(img_path)
 
 ```
 
-### next step
+### next step ?
 
 Check out [Documentation](https://github.com/omidshm/PyAutoADB/wiki) for in-depth explanation and examples
 
