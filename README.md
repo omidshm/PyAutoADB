@@ -34,6 +34,8 @@ adb_handler = pyautoadb.ADBDevice("", "port")
 
 - [ ] add async support
 - [ ] add kernel low level apis
+- [ ] add contribution rules
+- [ ] write rich documentation
 
 ## Contributing
 
