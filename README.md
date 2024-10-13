@@ -27,8 +27,11 @@ import pyautoadb
 adb_handler = pyautoadb.ADBDevice("", "port")
 
 
-
 ```
+
+### next step
+
+Check out [Documentation](https://github.com/omidshm/PyAutoADB/wiki) for in-depth explanation and examples
 
 ## Todo
 
@@ -43,11 +46,12 @@ see contribution detail
 
 ## Donation
 
-btc lightning
-btc
-usdt
+|----------------|-----------------------------------|
+| BTC lightning⚡ | <houseball47@walletofsatoshi.com> |
+| BTC            | Row 2, Col 2                      |
+| USDT(trc-20)   | Row 3, Col 2                      |
 
-thanks for your love
+thanks for your support
 
 ## Licence
 
