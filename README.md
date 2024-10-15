@@ -47,15 +47,6 @@ Check out [Documentation](https://github.com/omidshm/PyAutoADB/wiki) for in-dept
 
 see contribution detail
 
-## Donation
-
-| BTC lightning⚡ | <houseball47@walletofsatoshi.com> |
-|----------------|-----------------------------------|
-| BTC            | Row 2, Col 2                      |
-| USDT(trc-20)   | Row 3, Col 2                      |
-
-thanks for your support
-
 ## Licence
 
 This project is licensed under the MIT license. Feel free to use, modify, and distribute
